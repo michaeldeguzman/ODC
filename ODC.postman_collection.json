@@ -1,0 +1,306 @@
+{
+  "info": {
+    "_postman_id": "31cc4852-7cf0-4053-b452-adf1c30f15c5",
+    "name": "ODC",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "24381353"
+  },
+  "item": [
+    {
+      "name": "GetToken",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded"
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "grant_type",
+              "value": "client_credentials",
+              "type": "text"
+            },
+            {
+              "key": "client_id",
+              "value": "{{REDACTED}}",
+              "type": "text"
+            },
+            {
+              "key": "client_secret",
+              "value": "{{REDACTED}}",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://odc-community-f1.outsystems.dev/auth/realms/5e590730-cc03-44f9-a768-dc3f179837ab/protocol/openid-connect/token",
+          "protocol": "https",
+          "host": [
+            "odc-community-f1",
+            "outsystems",
+            "dev"
+          ],
+          "path": [
+            "auth",
+            "realms",
+            "5e590730-cc03-44f9-a768-dc3f179837ab",
+            "protocol",
+            "openid-connect",
+            "token"
+          ]
+        },
+        "description": "Generated from cURL: curl -X POST <TOKEN_ENDPOINT> \\\n  -H \"Content-Type: application/x-www-form-urlencoded\" \\\n  -d \"grant_type=client_credentials&client_id=<CLIENT_ID>&client_secret=<CLIENT_SECRET>\"\n"
+      },
+      "response": []
+    },
+    {
+      "name": "GetUsers",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{ODCToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://odc-community-f1.outsystems.dev/api/identity/v1/users",
+          "protocol": "https",
+          "host": [
+            "odc-community-f1",
+            "outsystems",
+            "dev"
+          ],
+          "path": [
+            "api",
+            "identity",
+            "v1",
+            "users"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GetUserByKey",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{ODCToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://odc-community-f1.outsystems.dev/api/identity/v1/users/59dfd9e7-174a-4132-a154-01f8d4612fe3",
+          "protocol": "https",
+          "host": [
+            "odc-community-f1",
+            "outsystems",
+            "dev"
+          ],
+          "path": [
+            "api",
+            "identity",
+            "v1",
+            "users",
+            "59dfd9e7-174a-4132-a154-01f8d4612fe3"
+          ],
+          "query": [
+            {
+              "key": "key",
+              "value": null,
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "QueryUser",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{ODCToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://odc-community-f1.outsystems.dev/api/identity/v1/users?nameOrEmailContains=BradPitt@madeguzmanauoutlook.onmicrosoft.com",
+          "protocol": "https",
+          "host": [
+            "odc-community-f1",
+            "outsystems",
+            "dev"
+          ],
+          "path": [
+            "api",
+            "identity",
+            "v1",
+            "users"
+          ],
+          "query": [
+            {
+              "key": "nameOrEmailContains",
+              "value": "BradPitt@madeguzmanauoutlook.onmicrosoft.com"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "CreateUser",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{ODCToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"name\": \"Test\",\n    \"email\": \"{{USER_EMAIL}}\",\n    \"isActive\": true,\n    \"addToBuiltInIdentityProvider\": false\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://odc-community-f1.outsystems.dev/api/identity/v1/users",
+          "protocol": "https",
+          "host": [
+            "odc-community-f1",
+            "outsystems",
+            "dev"
+          ],
+          "path": [
+            "api",
+            "identity",
+            "v1",
+            "users"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "UpdateUser",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{ODCToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PATCH",
+        "header": [],
+        "url": {
+          "raw": "https://odc-community-f1.outsystems.dev/api/identity/v1/users/{key}?key=1bea23c1-f8a4-4aba-a007-3337952637c4",
+          "protocol": "https",
+          "host": [
+            "odc-community-f1",
+            "outsystems",
+            "dev"
+          ],
+          "path": [
+            "api",
+            "identity",
+            "v1",
+            "users",
+            "{key}"
+          ],
+          "query": [
+            {
+              "key": "key",
+              "value": "1bea23c1-f8a4-4aba-a007-3337952637c4"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete User",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{ODCToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "https://odc-community-f1.outsystems.dev/api/identity/v1/users/54fd57b7-aa56-41d7-a6ae-07cebd99413e",
+          "protocol": "https",
+          "host": [
+            "odc-community-f1",
+            "outsystems",
+            "dev"
+          ],
+          "path": [
+            "api",
+            "identity",
+            "v1",
+            "users",
+            "54fd57b7-aa56-41d7-a6ae-07cebd99413e"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "ODCToken",
+      "value": "",
+      "type": "default"
+    }
+  ]
+}
