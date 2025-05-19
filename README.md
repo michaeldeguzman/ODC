@@ -25,23 +25,27 @@ No UI needed. Just plug it in, configure a few settings, and you're good to go.
 
 ---
 
-### 2. Configure Site Properties
+### 2. Configure Application Settings
 
 #### Get API Client Credentials
 
-1. Go to your **Users API** app in ODC.
-2. Create a new API Client under **Service Center > API Clients**.
-3. Copy the `ClientId` and `ClientSecret`.
+1. Go to your **Users API** app in the **ODC Portal**.
+2. Navigate to the **API Clients** tab.
+3. Create a new API Client and copy the `ClientId` and `ClientSecret`.
 
-#### Set the following Site Properties in Service Center:
+#### Set the following Application Settings in the ODC Portal:
 
-| Property       | Description |
+1. In the **ODC Portal**, go to your app.
+2. Open the **Configuration** tab.
+3. Add the following settings:
+
+| Setting        | Description |
 |----------------|-------------|
 | `ClientId`     | ODC API Client ID |
 | `ClientSecret` | ODC API Client Secret |
 | `SCIMToken`    | Static bearer token Azure will use. Generate one at [generate-random.org](https://generate-random.org/api-token-generator) |
 
-Azure will send the SCIMToken in the Authorization header for every request.
+Azure will send the `SCIMToken` in the Authorization header for every request.
 
 Official ODC API Docs: [OutSystems ODC REST APIs](https://success.outsystems.com/documentation/outsystems_developer_cloud/odc_rest_apis/)
 
@@ -51,7 +55,7 @@ Official ODC API Docs: [OutSystems ODC REST APIs](https://success.outsystems.com
 
 1. In Azure AD, go to **Enterprise Applications** > **+ New Application**
 2. Choose **Non-gallery application**, name it (e.g., `ODC SCIM Provisioning`)
-3. Go to **Provisioning** tab
+3. Go to the **Provisioning** tab
 4. Set Provisioning Mode to `Automatic`
 5. Tenant URL: `https://<yourenv>.outsystems.app/api/scim/v2`
 6. Secret Token: Use your `SCIMToken` value
@@ -109,4 +113,3 @@ SCIM-created users won’t appear in the ODC Portal’s Users screen, so it's im
 ## 💡 Need More?
 
 Open to feedback and PRs — or reach out if you'd like to help extend this for group sync, enterprise extensions, or multi-schema support.
-
